@@ -7,7 +7,7 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>Software Engineering — Suscak.com</title>
-        <meta name="description" content="Oh hi! I'm Marek. I share my learnings and passion for computer systems." />
+        <meta name="description" content="Oh hi! I'm Marek. I share my experiments and spread the passion for computer systems." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <h1>Oh hi! 👋</h1>
 
         <p>
-          I'm <strong>Marek</strong>, a pragmatic software craftsman on his lifelong learning journey. By day I engineer software systems and build products, by night I engage in the local tech community as a speaker and a mentor. I enjoy reading books on computer science, productivity, building and marketing products and behavioral psychology.
+          I&apos;m <strong>Marek</strong>, a pragmatic software craftsman on his lifelong learning journey. By day I engineer software systems and build products, by night I engage in the local tech community as a speaker and a mentor. I enjoy reading books on computer science, productivity, building and marketing products and behavioral psychology.
         </p>
 
         <p>
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
         </p>
 
         <p>
-          Thanks to perseverance and my genuine enthusiasm for the field of computer science, I gained a wealth of experience through working on a variety of projects spanning several industries. I am an extremely curious person who needs to understand the big picture before hastily solving the wrong problem. Last but not least I'm a system thinking advocate.
+          Thanks to perseverance and my genuine enthusiasm for the field of computer science, I gained a wealth of experience through working on a variety of projects spanning several industries. I am an extremely curious person who needs to understand the big picture before hastily solving the wrong problem. Last but not least I&apos;m a system thinking advocate.
         </p>
 
         <p>

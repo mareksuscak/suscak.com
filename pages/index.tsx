@@ -6,7 +6,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Software Engineering — Suscak.com</title>
+        <title>Software Engineering — Marek Suscak</title>
         <meta name="description" content="Oh hi! I'm Marek. I share my experiments and spread the passion for computer systems." />
         <link rel="icon" href="/favicon.ico" />
       </Head>

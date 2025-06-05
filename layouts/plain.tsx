@@ -1,3 +1,3 @@
-const Plain: React.FC = ({ children }) => <>{children}</>
+const Plain: React.FC<{ children: React.ReactNode }> = ({ children }) => <>{children}</>
 
 export { Plain }

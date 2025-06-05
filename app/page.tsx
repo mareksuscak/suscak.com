@@ -1,16 +1,8 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
 import styles from 'styles/Home.module.css'
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Software Engineering — Marek Suscak</title>
-        <meta name="description" content="Oh hi! I'm Marek. I share my experiments and spread the passion for computer systems." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className={styles.main}>
         <h1>Oh hi! 👋</h1>
 
@@ -37,5 +29,3 @@ const Home: NextPage = () => {
     </div>
   )
 }
-
-export default Home

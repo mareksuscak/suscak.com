@@ -1,22 +1,23 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-export const useAnalytics = () => {
-  const router = useRouter();
+export const Analytics = () => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       // TODO: load analytics
     }
+  }, []);
 
-    function onRouteChangeComplete() {
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
       // TODO: track pageview
     }
+  }, [pathname, searchParams]);
 
-    router.events.on('routeChangeComplete', onRouteChangeComplete);
-
-    return () => {
-      router.events.off('routeChangeComplete', onRouteChangeComplete);
-    };
-  }, [router.events]);
+  return null;
 };

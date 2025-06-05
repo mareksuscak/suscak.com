@@ -1,7 +1,7 @@
 {
   "private": true,
   "engines": {
-    "node": "14.x"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -13,18 +13,19 @@
   },
   "dependencies": {
     "@prisma/client": "^3.5.0",
-    "next": "12.0.4",
+    "next": "13",
     "querystring": "^0.2.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "swr": "^1.0.1"
   },
   "devDependencies": {
     "@types/node": "16.11.9",
     "@types/react": "17.0.35",
     "eslint": "7.32.0",
-    "eslint-config-next": "12.0.4",
+    "eslint-config-next": "13",
     "prisma": "^3.5.0",
     "typescript": "4.5.2"
-  }
+  },
+  "packageManager": "yarn@4.9.2+sha512.1fc009bc09d13cfd0e19efa44cbfc2b9cf6ca61482725eb35bbc5e257e093ebf4130db6dfe15d604ff4b79efd8e1e8e99b25fa7d0a6197c9f9826358d4d65c3c"
 }

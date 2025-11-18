@@ -1,6 +1,7 @@
 import '../styles/global.css'
 import { Analytics } from 'lib/analytics'
 import { Plain } from 'layouts/plain'
+import { Suspense } from 'react'
 
 export const metadata = {
   title: 'Software Engineering — Marek Suscak',
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Analytics />
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
         <Plain>
           {children}
         </Plain>

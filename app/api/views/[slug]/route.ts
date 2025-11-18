@@ -3,12 +3,14 @@ import { NextResponse } from 'next/server';
 
 export const runtime = 'edge';
 
+type Params = Promise<{ slug: string }>;
+
 export async function POST(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Params }
 ) {
   try {
-    const slug = params.slug;
+    const { slug } = await params;
 
     const newOrUpdatedViews = await prisma.views.upsert({
       where: { slug },
@@ -32,10 +34,10 @@ export async function POST(
 
 export async function GET(
   request: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Params }
 ) {
   try {
-    const slug = params.slug;
+    const { slug } = await params;
 
     const views = await prisma.views.findUnique({
       where: {

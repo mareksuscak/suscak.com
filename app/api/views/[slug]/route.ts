@@ -1,8 +1,6 @@
 import prisma from 'lib/prisma';
 import { NextResponse } from 'next/server';
 
-export const runtime = 'edge';
-
 type Params = Promise<{ slug: string }>;
 
 export async function POST(

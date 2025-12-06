@@ -23,7 +23,10 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "~/prisma/client": ["./prisma/client/client.ts"]
+    }
   },
   "include": [
     "**/*.ts",

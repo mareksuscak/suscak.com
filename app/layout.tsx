@@ -1,22 +1,38 @@
-import '../styles/global.css';
-import { Analytics } from 'lib/analytics';
-import { Plain } from 'layouts/plain';
-import { Suspense } from 'react';
+import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ENV } from 'varlock/env';
+import './globals.css';
 
-export const metadata = {
-  title: 'Software Engineering — Marek Suscak',
-  description:
-    "Oh hi! I'm Marek. I share my experiments and spread the passion for computer systems.",
+const title = 'Software Engineering — Marek Suscak';
+const description =
+  "Oh hi! I'm Marek. I share my experiments and spread the passion for computer systems.";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(ENV.SITE_URL),
+  title,
+  description,
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Marek Suscak',
+    title,
+    description,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@mareksuscak',
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="en">
       <body>
-        <Suspense fallback={null}>
-          <Analytics />
-        </Suspense>
-        <Plain>{children}</Plain>
+        {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

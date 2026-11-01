@@ -1,0 +1,93 @@
+/*
+ * Site-wide base styles. System fonts only: Georgia for body text, the platform UI font for headings.
+ * (Replaces the old normalize.css + typography.js theme while keeping the same look.)
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font:
+    112.5%/1.45 Georgia,
+    serif;
+  color: hsl(0 0% 0% / 0.8);
+  font-kerning: normal;
+  font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+  text-size-adjust: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 1.45rem;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-weight: bold;
+  line-height: 1.1;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.62671rem;
+}
+
+h3 {
+  font-size: 1.38316rem;
+}
+
+p,
+ul,
+ol,
+pre,
+blockquote,
+figure {
+  margin: 0 0 1.45rem;
+}
+
+ul,
+ol {
+  padding-left: 1.45rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+code {
+  padding: 0.2em 0;
+  border-radius: 3px;
+  background-color: hsl(0 0% 0% / 0.04);
+  font-family:
+    'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Menlo, Courier,
+    monospace;
+  font-size: 0.85em;
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 100%;
+  }
+}

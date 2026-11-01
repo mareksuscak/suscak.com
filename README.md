@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# suscak.com
 
-## Getting Started
+Personal website of Marek Suscak, live at [www.suscak.com](https://www.suscak.com).
 
-First, run the development server:
+A single static page built with the [Next.js](https://nextjs.org) App Router and deployed on [Vercel](https://vercel.com).
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack, typed routes) and **React 19**
+- **TypeScript 7** (native compiler)
+- **oxlint** for linting and **oxfmt** for formatting
+- **varlock** for environment variables (`.env.schema` declares them; local values are encrypted in `.env.local`)
+- **Vercel Analytics** and **Speed Insights**
+- **Yarn 4** via corepack, **Node.js 26**
+
+## Development
+
+Corepack is no longer bundled with Node.js 25+, so install it once with `npm install -g corepack`, then:
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+| Command          | What it does                                   |
+| ---------------- | ---------------------------------------------- |
+| `yarn dev`       | Start the dev server                           |
+| `yarn build`     | Production build                               |
+| `yarn typecheck` | Generate route types and run `tsc --noEmit`    |
+| `yarn lint`      | Lint with oxlint (`yarn lint:fix` to auto-fix) |
+| `yarn fmt`       | Format with oxfmt (`yarn fmt:check` to verify) |
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Environment variables
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Variables are declared in [`.env.schema`](./.env.schema). Local values go in `.env.local` (gitignored) and are encrypted with your device key:
 
-## Learn More
+```bash
+yarn varlock load                         # validate and show the config (secrets masked)
+yarn varlock encrypt --file .env.local    # encrypt plaintext secrets in place
+yarn varlock reveal KEY                   # securely view a value
+```
 
-To learn more about Next.js, take a look at the following resources:
+On Vercel, values come from the project's environment variables. Production builds also need `_VARLOCK_ENV_KEY`, which encrypts the env baked into the build.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Coding agents
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`AGENTS.md` holds the instructions for coding agents; its Next.js block is maintained by `next dev` and points agents at the docs bundled in `node_modules/next/dist/docs/`.

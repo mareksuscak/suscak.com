@@ -14,9 +14,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "paths": {
-      "lib/*": ["./lib/*"],
-      "layouts/*": ["./layouts/*"],
-      "styles/*": ["./styles/*"]
+      "@/*": ["./*"]
     },
     "incremental": true,
     "plugins": [

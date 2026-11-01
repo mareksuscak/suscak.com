@@ -18,19 +18,21 @@ Yarn 4 via corepack (`packageManager` in package.json); never use npm or pnpm he
 
 - `yarn dev`: dev server (Turbopack)
 - `yarn build`: production build (also type-checks)
-- `yarn typecheck`: generate Next.js route types, then `tsc --noEmit`
-- `yarn lint` / `yarn lint:fix`: oxlint (config in `.oxlintrc.json`); there is no ESLint
+- `yarn typecheck`: generate Next.js route types, then type-check with `oxlint --type-check` (tsgolint; there is no `tsc` step)
+- `yarn lint` / `yarn lint:fix`: oxlint with type-aware rules (config in `.oxlintrc.json`); there is no ESLint
 - `yarn fmt` / `yarn fmt:check`: oxfmt (config in `.oxfmtrc.json`); there is no Prettier
+- `yarn knip`: unused files, exports and dependencies (runs through `varlock run` so next.config.ts can load)
 
-Before finishing a change, run `yarn lint && yarn fmt:check && yarn typecheck && yarn build`.
+Before finishing a change, run `yarn fmt:check && yarn lint && yarn typecheck && yarn knip && yarn build` (the same steps as CI in `.github/workflows/ci.yml`).
 
 ### Conventions
 
 - TypeScript 7 (native compiler). `baseUrl` no longer exists; import project files with the `@/*` alias.
 - `typedRoutes` is on: `<Link href>` and `router.push` only accept existing routes. Use the global `PageProps<'/route'>` / `LayoutProps<'/route'>` helpers for page and layout props.
 - Security headers (including the Content-Security-Policy) live in `headers()` in `next.config.ts`. Anything that loads a third-party script, style, image, font or connection must be allowed there.
-- Styles: plain CSS (`app/globals.css`) and CSS modules next to the page; system fonts only.
-- Metadata files in `app/`: `favicon.ico`, `opengraph-image.tsx`, `robots.ts`, `sitemap.ts`. Add new pages to the sitemap.
+- Styles: Tailwind CSS 4 utilities. Design tokens (fonts, colors) live in `@theme` in `app/globals.css`; colors use `light-dark()` so light and dark mode come from one token. Base typography is in `@layer base` there. System fonts only.
+- Metadata files in `app/`: `favicon.ico`, `opengraph-image.tsx`, `sitemap.ts`, plus route handlers for `robots.txt` (includes Content-Signal) and `llms.txt`. Add new pages to the sitemap and `llms.txt`.
+- Agent readiness: `/` serves Markdown for `Accept: text/markdown` (rewrite to `/index.md` in `next.config.ts`). The Markdown copy lives in `content/home.ts`; update it whenever the page copy in `app/page.tsx` changes.
 
 ### Environment variables (varlock)
 

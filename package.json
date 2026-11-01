@@ -14,14 +14,15 @@
     "fmt:check": "oxfmt --check"
   },
   "dependencies": {
-    "dotenv": "^18.0.9",
+    "@varlock/nextjs-integration": "^2.0.0",
     "drizzle-orm": "^0.45.4",
     "next": "^16.0.7",
     "pg": "^8.23.1",
     "querystring": "^0.2.1",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "swr": "^2.3.7"
+    "swr": "^2.3.7",
+    "varlock": "^1.24.0"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
@@ -31,6 +32,9 @@
     "oxfmt": "^0.75.0",
     "oxlint": "^1.90.0",
     "typescript": "^7.0.2"
+  },
+  "resolutions": {
+    "@next/env": "npm:@varlock/nextjs-integration@^2.0.0"
   },
   "engines": {
     "node": "26.x"

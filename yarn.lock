@@ -813,10 +813,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:16.4.3":
-  version: 16.4.3
-  resolution: "@next/env@npm:16.4.3"
-  checksum: 10c0/9502fdaed8caa4a31aa05fec41c71c573ea5def37ecc2f3f935c06443f6c38e74074f62ffbd924605621f105161189d4f37fdb105d3ddeeac9cee03007b61f43
+"@next/env@npm:@varlock/nextjs-integration@^2.0.0, @varlock/nextjs-integration@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@varlock/nextjs-integration@npm:2.0.0"
+  peerDependencies:
+    next: ">=14"
+    varlock: ^1.24.0
+  checksum: 10c0/1588d5091fdbf04b9d253f3113c6b2d04432914abcfff9391fa386c8a3c5855b6dfc844e9c8693450f7c6f05639b3dd33b83134ab303135484ec63a8d6f3e976
   languageName: node
   linkType: hard
 
@@ -1320,6 +1323,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@varlock/native-helper-darwin@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@varlock/native-helper-darwin@npm:1.24.0"
+  conditions: os=darwin
+  languageName: node
+  linkType: hard
+
+"@varlock/native-helper-linux-arm64@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@varlock/native-helper-linux-arm64@npm:1.24.0"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@varlock/native-helper-linux-x64@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@varlock/native-helper-linux-x64@npm:1.24.0"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@varlock/native-helper-win32-x64@npm:1.24.0":
+  version: 1.24.0
+  resolution: "@varlock/native-helper-win32-x64@npm:1.24.0"
+  conditions: (os=win32 | os=linux)
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^5.0.0":
   version: 5.0.0
   resolution: "abbrev@npm:5.0.0"
@@ -1382,15 +1413,6 @@ __metadata:
   version: 2.1.2
   resolution: "detect-libc@npm:2.1.2"
   checksum: 10c0/acc675c29a5649fa1fb6e255f993b8ee829e510b6b56b0910666949c80c364738833417d0edb5f90e4e46be17228b0f2b66a010513984e18b15deeeac49369c4
-  languageName: node
-  linkType: hard
-
-"dotenv@npm:^18.0.9":
-  version: 18.0.9
-  resolution: "dotenv@npm:18.0.9"
-  bin:
-    dotenv: dist/index.cjs
-  checksum: 10c0/62a70960e611f1d26bf5ade0e0baa7850513f65d56789ba282c8ae7f690411d364457d33d4302b2611cc18157d03dea589ac7e33f1aa85b8f69737b8c05cf726
   languageName: node
   linkType: hard
 
@@ -2283,7 +2305,7 @@ __metadata:
     "@types/node": "npm:^26.6.6"
     "@types/pg": "npm:^8.23.1"
     "@types/react": "npm:^19.3.0"
-    dotenv: "npm:^18.0.9"
+    "@varlock/nextjs-integration": "npm:^2.0.0"
     drizzle-kit: "npm:^0.31.11"
     drizzle-orm: "npm:^0.45.4"
     next: "npm:^16.0.7"
@@ -2295,6 +2317,7 @@ __metadata:
     react-dom: "npm:^19.2.1"
     swr: "npm:^2.3.7"
     typescript: "npm:^7.0.2"
+    varlock: "npm:^1.24.0"
   languageName: unknown
   linkType: soft
 
@@ -2677,6 +2700,29 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10c0/6bae7cb778ce611131ec830c4e469fbc2872acefc25d2e4cf1c28b8628690689770742a9f2f0642c95134f9c77041fee60f0352f81ca43f96643b0ed01774726
+  languageName: node
+  linkType: hard
+
+"varlock@npm:^1.24.0":
+  version: 1.24.0
+  resolution: "varlock@npm:1.24.0"
+  dependencies:
+    "@varlock/native-helper-darwin": "npm:1.24.0"
+    "@varlock/native-helper-linux-arm64": "npm:1.24.0"
+    "@varlock/native-helper-linux-x64": "npm:1.24.0"
+    "@varlock/native-helper-win32-x64": "npm:1.24.0"
+  dependenciesMeta:
+    "@varlock/native-helper-darwin":
+      optional: true
+    "@varlock/native-helper-linux-arm64":
+      optional: true
+    "@varlock/native-helper-linux-x64":
+      optional: true
+    "@varlock/native-helper-win32-x64":
+      optional: true
+  bin:
+    varlock: bin/cli.js
+  checksum: 10c0/a669a0db0e448914495e2dc621e1e627201d35d440b23163ff9de6387d5771189783f5a5908979992b8231577ac3896d1faa5beff5a33e686479bb165fbfeab8
   languageName: node
   linkType: hard
 

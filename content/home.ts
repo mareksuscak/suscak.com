@@ -10,12 +10,11 @@ Thanks to perseverance and my genuine enthusiasm for the field of computer scien
 
 According to Meyers-Briggs personality test, I am a well-balanced ENFJ-T type which is said to be very rare forming only around 2% of the world population. My biggest strengths are empathy, charisma and strong self-reflection ability.
 
-_You can follow me on [Twitter](https://twitter.com/mareksuscak), [GitHub](https://github.com/mareksuscak), [GitLab](https://gitlab.com/mareksuscak) or [LinkedIn](https://www.linkedin.com/in/mareksuscak/)_
+_You can follow me on [X (Twitter)](https://x.com/mareksuscak), [GitHub](https://github.com/mareksuscak) or [LinkedIn](https://www.linkedin.com/in/mareksuscak/)_
 `;
 
 export const profiles = {
-  twitter: 'https://twitter.com/mareksuscak',
+  x: 'https://x.com/mareksuscak',
   github: 'https://github.com/mareksuscak',
-  gitlab: 'https://gitlab.com/mareksuscak',
   linkedin: 'https://www.linkedin.com/in/mareksuscak/',
 } as const;

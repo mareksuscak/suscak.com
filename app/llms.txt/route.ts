@@ -18,9 +18,8 @@ export function GET() {
 ## Profiles
 
 - [GitHub](${profiles.github})
-- [GitLab](${profiles.gitlab})
 - [LinkedIn](${profiles.linkedin})
-- [Twitter](${profiles.twitter})
+- [X (Twitter)](${profiles.x})
 `;
 
   return new Response(body, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

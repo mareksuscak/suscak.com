@@ -54,9 +54,8 @@ export default function Home() {
 
       <p>
         <em>
-          You can follow me on <a href={profiles.twitter}>Twitter</a>,{' '}
-          <a href={profiles.github}>GitHub</a>, <a href={profiles.gitlab}>GitLab</a> or{' '}
-          <a href={profiles.linkedin}>LinkedIn</a>
+          You can follow me on <a href={profiles.x}>X (Twitter)</a>,{' '}
+          <a href={profiles.github}>GitHub</a> or <a href={profiles.linkedin}>LinkedIn</a>
         </em>
       </p>
     </main>

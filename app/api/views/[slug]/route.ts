@@ -5,10 +5,7 @@ import { NextResponse } from 'next/server';
 
 type Params = Promise<{ slug: string }>;
 
-export async function POST(
-  request: Request,
-  { params }: { params: Params }
-) {
+export async function POST(request: Request, { params }: { params: Params }) {
   try {
     const { slug } = await params;
 
@@ -17,22 +14,19 @@ export async function POST(
       .values({ slug })
       .onConflictDoUpdate({
         target: views.slug,
-        set: { count: sql`${views.count} + 1` }
+        set: { count: sql`${views.count} + 1` },
       })
       .returning();
 
     return NextResponse.json({
-      total: newOrUpdatedViews.count.toString()
+      total: newOrUpdatedViews.count.toString(),
     });
   } catch (e: any) {
     return NextResponse.json({ message: e.message }, { status: 500 });
   }
 }
 
-export async function GET(
-  request: Request,
-  { params }: { params: Params }
-) {
+export async function GET(request: Request, { params }: { params: Params }) {
   try {
     const { slug } = await params;
 

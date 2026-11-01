@@ -1,0 +1,5 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "singleQuote": true,
+  "ignorePatterns": ["drizzle/meta/**", "next-env.d.ts", ".yarnrc.yml"]
+}

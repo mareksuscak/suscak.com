@@ -28,12 +28,12 @@ export async function GET() {
       artist,
       isPlaying,
       songUrl,
-      title
+      title,
     },
     {
       headers: {
-        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30'
-      }
-    }
+        'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
+      },
+    },
   );
 }

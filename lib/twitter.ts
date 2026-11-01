@@ -12,18 +12,14 @@ export const getTweets = async (ids: any) => {
     'tweet.fields':
       'attachments,author_id,public_metrics,created_at,id,in_reply_to_user_id,referenced_tweets,text',
     'user.fields': 'id,name,profile_image_url,protected,url,username,verified',
-    'media.fields':
-      'duration_ms,height,media_key,preview_image_url,type,url,width,public_metrics'
+    'media.fields': 'duration_ms,height,media_key,preview_image_url,type,url,width,public_metrics',
   });
 
-  const response = await fetch(
-    `https://api.twitter.com/2/tweets?${queryParams}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.TWITTER_API_KEY}`
-      }
-    }
-  );
+  const response = await fetch(`https://api.twitter.com/2/tweets?${queryParams}`, {
+    headers: {
+      Authorization: `Bearer ${process.env.TWITTER_API_KEY}`,
+    },
+  });
 
   const tweets = await response.json();
 
@@ -35,13 +31,13 @@ export const getTweets = async (ids: any) => {
     return (
       mainTweet?.referenced_tweets?.map((referencedTweet: any) => {
         const fullReferencedTweet = tweets.includes.tweets.find(
-          (tweet: any) => tweet.id === referencedTweet.id
+          (tweet: any) => tweet.id === referencedTweet.id,
         );
 
         return {
           type: referencedTweet.type,
           author: getAuthorInfo(fullReferencedTweet.author_id),
-          ...fullReferencedTweet
+          ...fullReferencedTweet,
         };
       }) || []
     );
@@ -52,10 +48,10 @@ export const getTweets = async (ids: any) => {
       ...tweet,
       media:
         tweet?.attachments?.media_keys.map((key: any) =>
-          tweets.includes.media.find((media: any) => media.media_key === key)
+          tweets.includes.media.find((media: any) => media.media_key === key),
         ) || [],
       referenced_tweets: getReferencedTweets(tweet),
-      author: getAuthorInfo(tweet.author_id)
+      author: getAuthorInfo(tweet.author_id),
     };
 
     return [tweetWithAuthor, ...allTweets];

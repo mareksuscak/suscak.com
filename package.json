@@ -30,7 +30,7 @@
     "drizzle-kit": "^0.31.11",
     "oxfmt": "^0.75.0",
     "oxlint": "^1.90.0",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   },
   "engines": {
     "node": "26.x"

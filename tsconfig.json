@@ -13,7 +13,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
+    "paths": {
+      "lib/*": ["./lib/*"],
+      "layouts/*": ["./layouts/*"],
+      "styles/*": ["./styles/*"]
+    },
     "incremental": true,
     "plugins": [
       {

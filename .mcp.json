@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "next-devtools": {
-      "command": "npx",
-      "args": ["-y", "next-devtools-mcp@latest"]
+      "command": "yarn",
+      "args": ["next-devtools-mcp"]
     }
   }
 }

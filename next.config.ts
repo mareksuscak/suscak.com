@@ -68,8 +68,6 @@ const homeHeaders = [
       '</index.md>; rel="alternate"; type="text/markdown"',
     ].join(', '),
   },
-  // `/` returns HTML or Markdown depending on the Accept header (see rewrites below).
-  { key: 'Vary', value: 'Accept' },
 ];
 
 const config: NextConfig = {
@@ -91,11 +89,20 @@ const config: NextConfig = {
   },
   async rewrites() {
     return {
-      // Markdown for Agents: serve the Markdown version of `/` to clients that ask for it.
+      // Markdown for Agents: serve the Markdown version of `/` to clients that ask for it,
+      // except those that explicitly refuse it (`text/markdown;q=0`). The Markdown response
+      // sets `Vary: Accept` itself (app/index.md/route.ts); Next sets its own Vary on HTML.
       beforeFiles: [
         {
           source: '/',
           has: [{ type: 'header', key: 'accept', value: '.*text/markdown.*' }],
+          missing: [
+            {
+              type: 'header',
+              key: 'accept',
+              value: '.*text/markdown[^,]*;\\s*q=0(?:\\.0{1,3})?\\s*(?:[,;].*)?',
+            },
+          ],
           destination: '/index.md',
         },
       ],

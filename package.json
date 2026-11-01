@@ -8,15 +8,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build",
-    "prisma:generate": "prisma generate"
+    "vercel-build": "drizzle-kit migrate && next build",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.1.0",
-    "@prisma/client": "7",
     "dotenv": "^18.0.9",
+    "drizzle-orm": "^0.45.4",
     "next": "^16.0.7",
-    "prisma": "7",
+    "pg": "^8.23.1",
     "querystring": "^0.2.1",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
@@ -24,10 +25,11 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
+    "@types/pg": "^8.23.1",
     "@types/react": "^19.3.0",
+    "drizzle-kit": "^0.31.11",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.4.3",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "packageManager": "yarn@4.18.1+sha512.b2e1e7524f654f2749d32b4ebcb4622473cb5bcbc485df2007e12a154e50162a4d795526768bc5f5b8f81717bfd79deb2472813d86fb5ae2eb551fa9c872b08f"

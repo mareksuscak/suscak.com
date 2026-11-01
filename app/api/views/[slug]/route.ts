@@ -1,4 +1,6 @@
-import prisma from 'lib/prisma';
+import { eq, sql } from 'drizzle-orm';
+import db from 'lib/db';
+import { views } from 'lib/db/schema';
 import { NextResponse } from 'next/server';
 
 type Params = Promise<{ slug: string }>;
@@ -10,17 +12,14 @@ export async function POST(
   try {
     const { slug } = await params;
 
-    const newOrUpdatedViews = await prisma.views.upsert({
-      where: { slug },
-      create: {
-        slug
-      },
-      update: {
-        count: {
-          increment: 1
-        }
-      }
-    });
+    const [newOrUpdatedViews] = await db
+      .insert(views)
+      .values({ slug })
+      .onConflictDoUpdate({
+        target: views.slug,
+        set: { count: sql`${views.count} + 1` }
+      })
+      .returning();
 
     return NextResponse.json({
       total: newOrUpdatedViews.count.toString()
@@ -37,13 +36,13 @@ export async function GET(
   try {
     const { slug } = await params;
 
-    const views = await prisma.views.findUnique({
-      where: {
-        slug
-      }
-    });
+    const [row] = await db
+      .select({ count: views.count })
+      .from(views)
+      .where(eq(views.slug, slug))
+      .limit(1);
 
-    return NextResponse.json({ total: views?.count?.toString() });
+    return NextResponse.json({ total: row?.count?.toString() });
   } catch (e: any) {
     return NextResponse.json({ message: e.message }, { status: 500 });
   }

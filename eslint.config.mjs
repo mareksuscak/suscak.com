@@ -3,5 +3,5 @@ import nextVitals from 'eslint-config-next/core-web-vitals'
 
 export default defineConfig([
   ...nextVitals,
-  globalIgnores(['.yarn/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'prisma/client/**']),
+  globalIgnores(['.yarn/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
 ])

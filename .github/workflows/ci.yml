@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  # Keep this job name stable: Vercel Deployment Checks identify the required check by it.
+  ci:
+    name: Lint, typecheck and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json # reads engines.node
+
+      # Node 25+ no longer bundles corepack. The repo pins Yarn via `packageManager` and
+      # `yarnPath`, so corepack only needs to provide the `yarn` shim.
+      - name: Enable Yarn via corepack
+        run: npm install --global corepack@latest && corepack enable
+
+      - name: Locate Yarn cache
+        id: yarn-cache
+        run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Yarn
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: yarn-${{ runner.os }}-
+
+      - run: yarn install --immutable
+      - run: yarn fmt:check
+      - run: yarn lint
+      - run: yarn typecheck
+      - run: yarn knip
+      - run: yarn build

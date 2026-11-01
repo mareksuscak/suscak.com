@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(ENV.SITE_URL),
   title,
   description,
-  alternates: { canonical: '/' },
+  alternates: { canonical: '/', types: { 'text/markdown': '/index.md' } },
   openGraph: {
     type: 'website',
     url: '/',

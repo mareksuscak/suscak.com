@@ -8,7 +8,9 @@ A single static page built with the [Next.js](https://nextjs.org) App Router and
 
 - **Next.js 16** (App Router, Turbopack, typed routes) and **React 19**
 - **TypeScript 7** (native compiler)
-- **oxlint** for linting and **oxfmt** for formatting
+- **Tailwind CSS 4** with design tokens in `app/globals.css` (light and dark mode via `light-dark()`)
+- **oxlint** for linting, including type-aware rules and type-checking (via `oxlint-tsgolint`), and **oxfmt** for formatting
+- **Knip** for unused files, exports and dependencies
 - **varlock** for environment variables (`.env.schema` declares them; local values are encrypted in `.env.local`)
 - **Vercel Analytics** and **Speed Insights**
 - **Yarn 4** via corepack, **Node.js 26**
@@ -24,13 +26,22 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-| Command          | What it does                                   |
-| ---------------- | ---------------------------------------------- |
-| `yarn dev`       | Start the dev server                           |
-| `yarn build`     | Production build                               |
-| `yarn typecheck` | Generate route types and run `tsc --noEmit`    |
-| `yarn lint`      | Lint with oxlint (`yarn lint:fix` to auto-fix) |
-| `yarn fmt`       | Format with oxfmt (`yarn fmt:check` to verify) |
+| Command          | What it does                                    |
+| ---------------- | ----------------------------------------------- |
+| `yarn dev`       | Start the dev server                            |
+| `yarn build`     | Production build                                |
+| `yarn typecheck` | Generate route types and type-check with oxlint |
+| `yarn lint`      | Lint with oxlint (`yarn lint:fix` to auto-fix)  |
+| `yarn fmt`       | Format with oxfmt (`yarn fmt:check` to verify)  |
+| `yarn knip`      | Find unused files, exports and dependencies     |
+
+CI (`.github/workflows/ci.yml`) runs all of the above plus a production build on every push and pull request.
+
+## Agent readiness
+
+- `/llms.txt` summarizes the site for LLMs ([llmstxt.org](https://llmstxt.org))
+- `/` returns Markdown when requested with `Accept: text/markdown` (also available at `/index.md`, from `content/home.ts`)
+- The home page sends a `Link` header pointing to both, and `robots.txt` declares [Content Signals](https://contentsignals.org)
 
 ## Environment variables
 

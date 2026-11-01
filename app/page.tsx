@@ -1,8 +1,28 @@
-import styles from './page.module.css';
+import { ENV } from 'varlock/env';
+import { profiles } from '@/content/home';
+
+// Structured data: https://developers.google.com/search/docs/appearance/structured-data/profile-page
+const profilePage = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Marek Suscak',
+    url: ENV.SITE_URL,
+    jobTitle: 'Software Engineer',
+    sameAs: Object.values(profiles),
+  },
+};
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main className="mx-auto max-w-[780px] px-[1.0875rem] py-[1.45rem]">
+      <script
+        type="application/ld+json"
+        // Escape `<` so the JSON can never close the script tag early.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePage).replace(/</g, '\\u003c') }}
+      />
+
       <h1>Oh hi! 👋</h1>
 
       <p>
@@ -34,10 +54,9 @@ export default function Home() {
 
       <p>
         <em>
-          You can follow me on <a href="https://twitter.com/mareksuscak">Twitter</a>,{' '}
-          <a href="https://github.com/mareksuscak">GitHub</a>,{' '}
-          <a href="https://gitlab.com/mareksuscak">GitLab</a> or{' '}
-          <a href="https://www.linkedin.com/in/mareksuscak/">LinkedIn</a>
+          You can follow me on <a href={profiles.twitter}>Twitter</a>,{' '}
+          <a href={profiles.github}>GitHub</a>, <a href={profiles.gitlab}>GitLab</a> or{' '}
+          <a href={profiles.linkedin}>LinkedIn</a>
         </em>
       </p>
     </main>

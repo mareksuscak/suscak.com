@@ -1,93 +1,114 @@
+@import 'tailwindcss';
+
 /*
- * Site-wide base styles. System fonts only: Georgia for body text, the platform UI font for headings.
- * (Replaces the old normalize.css + typography.js theme while keeping the same look.)
+ * Design tokens. Usable as utilities, e.g. `font-serif`, `font-sans`, `bg-background`, `text-foreground`.
+ * Colors use light-dark(), so they follow the visitor's OS color scheme (see `color-scheme` below).
  */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  font:
-    112.5%/1.45 Georgia,
-    serif;
-  color: hsl(0 0% 0% / 0.8);
-  font-kerning: normal;
-  font-feature-settings: 'kern', 'liga', 'clig', 'calt';
-  text-size-adjust: 100%;
-  overflow-y: scroll;
-}
-
-body {
-  margin: 0;
-  overflow-wrap: break-word;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0 0 1.45rem;
-  font-family:
+@theme {
+  --font-serif: Georgia, serif;
+  --font-sans:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-weight: bold;
-  line-height: 1.1;
-  text-rendering: optimizeLegibility;
-}
-
-h1 {
-  font-size: 2.25rem;
-}
-
-h2 {
-  font-size: 1.62671rem;
-}
-
-h3 {
-  font-size: 1.38316rem;
-}
-
-p,
-ul,
-ol,
-pre,
-blockquote,
-figure {
-  margin: 0 0 1.45rem;
-}
-
-ul,
-ol {
-  padding-left: 1.45rem;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-strong,
-b {
-  font-weight: bold;
-}
-
-code {
-  padding: 0.2em 0;
-  border-radius: 3px;
-  background-color: hsl(0 0% 0% / 0.04);
-  font-family:
+  --font-mono:
     'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Menlo, Courier,
     monospace;
-  font-size: 0.85em;
+
+  --color-background: light-dark(#ffffff, #121212);
+  --color-foreground: light-dark(hsl(0 0% 0% / 0.8), hsl(0 0% 100% / 0.85));
+  --color-link: light-dark(#0000ee, #8ab4f8);
+  --color-link-visited: light-dark(#551a8b, #c58af9);
+  --color-code: light-dark(hsl(0 0% 0% / 0.04), hsl(0 0% 100% / 0.08));
 }
 
-@media (max-width: 480px) {
+/*
+ * Base typography: Georgia body text with system-font headings on an 18px (16px on small screens)
+ * baseline and a 1.45rem vertical rhythm.
+ */
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
   html {
-    font-size: 100%;
+    font-size: 112.5%;
+    line-height: 1.45;
+    font-family: var(--font-serif);
+    font-kerning: normal;
+    font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+    overflow-y: scroll;
+
+    @media (max-width: 480px) {
+      font-size: 100%;
+    }
+  }
+
+  body {
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 1.45rem;
+    font-family: var(--font-sans);
+    font-weight: bold;
+    line-height: 1.1;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.62671rem;
+  }
+
+  h3 {
+    font-size: 1.38316rem;
+  }
+
+  p,
+  ul,
+  ol,
+  pre,
+  blockquote,
+  figure {
+    margin-bottom: 1.45rem;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.45rem;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: underline;
+
+    &:visited {
+      color: var(--color-link-visited);
+    }
+  }
+
+  code {
+    padding-block: 0.2em;
+    border-radius: 3px;
+    background-color: var(--color-code);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
   }
 }

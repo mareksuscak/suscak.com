@@ -34,7 +34,9 @@
     "typescript": "^7.0.2"
   },
   "resolutions": {
-    "@next/env": "npm:@varlock/nextjs-integration@^2.0.0"
+    "@next/env": "npm:@varlock/nextjs-integration@^2.0.0",
+    "next-devtools-mcp/@modelcontextprotocol/sdk": "^1.32.2",
+    "next-devtools-mcp/zod": "^4.6.7"
   },
   "engines": {
     "node": "26.x"
